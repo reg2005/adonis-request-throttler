@@ -1,0 +1,9 @@
+{
+	"autoloads": {
+		"App": "./app"
+	},
+	"exceptionHandlerNamespace": "App/Exceptions/Handler",
+	"providers": [
+		"@adonisjs/core"
+	]
+}

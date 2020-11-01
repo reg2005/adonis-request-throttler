@@ -1,0 +1,3 @@
+import AdonisRequestThrottlerProvider from './providers/AdonisRequestThrottlerProvider'
+
+export default AdonisRequestThrottlerProvider

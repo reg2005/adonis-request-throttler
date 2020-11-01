@@ -1,0 +1,138 @@
+{
+	"name": "adonis-request-throttler",
+	"version": "1.0.0",
+	"description": "Request throttler provider for AdonisJS 5",
+	"scripts": {
+		"mrm": "mrm --preset=@adonisjs/mrm-preset",
+		"dev": "tsc --watch",
+		"clean": "del build",
+		"compile": "npm run lint && npm run clean && tsc && npm run copy:files",
+		"copy:files": "cpx 'templates/**' 'build/templates'",
+		"build": "npm run compile",
+		"test": "jest test --runInBand --testTimeout 30000",
+		"prepublishOnly": "npm run build",
+		"lint": "eslint . --ext=.ts --fix",
+		"format": "prettier --write .",
+		"commit": "git-cz",
+		"release": "np",
+		"version": "npm run build",
+		"run-prettier": "prettier --write .",
+		"sync-labels": "github-label-sync --labels ./node_modules/@adonisjs/mrm-preset/gh-labels.json reg2005/adonis5-cache"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/reg2005/adonis5-cache.git"
+	},
+	"keywords": [
+		"Adonis",
+		"5",
+		"adonis-request-throttler"
+	],
+	"author": "Vladyslav Parashchenko",
+	"contributors": [
+		{
+			"name": "Vladyslav Parashchenko",
+			"email": "vladyslavparashchenko37@gmail.com"
+		},
+		{
+			"name": "Ryumin Evgeniy",
+			"email": "cmp08@ya.ru"
+		}
+	],
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/reg2005/adonis-request-throttler/issues"
+	},
+	"homepage": "https://github.com/reg2005/adonis-request-throttler#readme",
+	"types": "build/adonis-typings/index.d.ts",
+	"typings": "build/adonis-typings/index.d.ts",
+	"devDependencies": {
+		"@adonisjs/core": "5.0.2-beta-rc-8",
+		"@adonisjs/fold": "^7.0.7",
+		"@adonisjs/http-server": "^4.0.4",
+		"@adonisjs/ioc-transformer": "^2.0.1",
+		"@adonisjs/mrm-preset": "^2.4.0",
+		"@poppinss/dev-utils": "^1.0.7",
+		"@types/node": "^14.0.24",
+		"@types/ramda": "^0.27.19",
+		"commitizen": "^4.1.2",
+		"cpx": "^1.5.0",
+		"cz-conventional-changelog": "^3.2.0",
+		"debug": "^4.1.1",
+		"del-cli": "^3.0.1",
+		"doctoc": "^1.4.0",
+		"eslint": "^7.5.0",
+		"eslint-config-prettier": "^6.11.0",
+		"eslint-plugin-adonis": "^1.0.14",
+		"eslint-plugin-prettier": "^3.1.4",
+		"get-port": "^5.1.1",
+		"github-label-sync": "^2.0.0",
+		"husky": "^4.2.5",
+		"jest": "^26.5.2",
+		"mrm": "^2.3.3",
+		"np": "^6.3.2",
+		"npm-audit-html": "^1.4.1",
+		"pino-pretty": "^4.1.0",
+		"prettier": "^2.0.5",
+		"reflect-metadata": "^0.1.13",
+		"source-map-support": "^0.5.19",
+		"supertest": "^5.0.0",
+		"ts-jest": "^26.4.1",
+		"ts-mockito": "^2.6.1",
+		"ts-node": "^8.10.2",
+		"typescript": "^3.9.7"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm audit --production --json | ./node_modules/.bin/npm-audit-html && git add npm-audit.html && doctoc README.md --title='## Table of contents' && git add README.md",
+			"commit-msg": "node ./node_modules/@adonisjs/mrm-preset/validateCommit/conventional/validate.js"
+		}
+	},
+	"nyc": {
+		"exclude": [
+			"test"
+		],
+		"extension": [
+			".ts"
+		]
+	},
+	"main": "build/index.js",
+	"files": [
+		"build/src",
+		"build/adonis-typings",
+		"build/providers",
+		"build/templates",
+		"build/index.d.ts",
+		"build/index.js"
+	],
+	"adonisjs": {
+		"types": "adonis-request-throttler",
+		"providers": [
+			"adonis-request-throttler"
+		],
+		"templates": {
+			"config": [
+				{
+					"src": "config.txt",
+					"dest": "request-throttler"
+				}
+			]
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "cz-conventional-changelog"
+		}
+	},
+	"np": {
+		"contents": ".",
+		"anyBranch": false
+	},
+	"dependencies": {
+		"@adonisjs/events": "^4.0.1",
+		"@adonisjs/redis": "^4.1.2",
+		"adonis5-cache": "^1.1.3",
+		"dayjs": "^1.8.34",
+		"ms": "^2.1.2"
+	}
+}

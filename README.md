@@ -153,13 +153,13 @@ You should register cache provider before request-throttler provider for using a
   ]
 } 
 ```
-When you use [adonis5-cache](https://github.com/reg2005/adonis5-cache#readme) as storage, you can add custom storages for storing request data. Read more about this in adonis5-cache [docs](https://github.com/reg2005/adonis5-cache#readme)
+When you use [adonis5-cache](https://github.com/reg2005/adonis5-cache#readme) as storage, you can add custom storages for storing request data. Read more about this in adonis5-cache [docs].(https://github.com/reg2005/adonis5-cache#readme)
 
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
 [typescript-url]:  "typescript"
 
 [npm-image]: https://img.shields.io/npm/v/adonis-request-throttler.svg?style=for-the-badge&logo=npm
-[npm-url]: https://npmjs.org/package/adonis5-cache "npm"
+[npm-url]: https://www.npmjs.com/package/adonis-request-throttler "npm"
 
 [license-image]: https://img.shields.io/npm/l/adonis-request-throttler?color=blueviolet&style=for-the-badge
 [license-url]: LICENSE.md "license"

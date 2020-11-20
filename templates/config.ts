@@ -16,4 +16,6 @@ export default {
 		message: 'Maximum number of login attempts exceeded. Please try again later.',
 		status: 429,
 	},
+
+	requestKeysForRecognizing: ['method', 'hostname', 'url', 'ip'],
 } as ThrottleConfig

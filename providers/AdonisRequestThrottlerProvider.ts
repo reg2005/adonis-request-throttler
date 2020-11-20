@@ -5,6 +5,7 @@ import { ThrottleConfig } from '@ioc:Adonis/Addons/RequestThrottler'
 import CacheClientBuilder from '../src/CacheClientBuilder'
 import { RedisManagerContract } from '@ioc:Adonis/Addons/Redis'
 import { CacheManagerContract } from '@ioc:Adonis/Addons/Adonis5-Cache'
+import DefaultClientRecognizer from '../src/ClientRecognizers/DefaultClientRecognizer'
 
 export default class AdonisRequestThrottlerProvider {
 	constructor(protected container: IocContract) {}
@@ -32,6 +33,9 @@ export default class AdonisRequestThrottlerProvider {
 			: this.container.use('Adonis/Addons/Adonis5-Cache')
 
 		throttleManager.useCacheStorage(cacheManager)
+		throttleManager.useClientRecognizer(
+			new DefaultClientRecognizer(throttlerConfig.requestKeysForRecognizing)
+		)
 	}
 
 	private buildOwnCacheProvider(config: ThrottleConfig, ioc: IocContract): CacheManagerContract {

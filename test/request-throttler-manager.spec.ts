@@ -9,6 +9,7 @@ import { RequestContract } from '@ioc:Adonis/Core/Request'
 import Request from '@adonisjs/http-server/build/src/Request'
 import { deepEqual, instance, mock, verify, when } from 'ts-mockito'
 import dayjs from 'dayjs'
+import DefaultClientRecognizer from '../src/ClientRecognizers/DefaultClientRecognizer'
 
 const testConfig: ThrottleConfig = {
 	maxAttempts: 10,
@@ -25,6 +26,8 @@ const testConfig: ThrottleConfig = {
 		message: 'Maximum number of login attempts exceeded. Please try again later.',
 		status: 429,
 	},
+
+	requestKeysForRecognizing: ['method', 'url', 'ip'],
 }
 
 describe('Request Throttler Manager', () => {
@@ -32,6 +35,9 @@ describe('Request Throttler Manager', () => {
 
 	beforeEach(() => {
 		throttleManager = new RequestThrottlerManager(testConfig)
+		throttleManager.useClientRecognizer(
+			new DefaultClientRecognizer(testConfig.requestKeysForRecognizing)
+		)
 	})
 
 	describe('Verify request', () => {

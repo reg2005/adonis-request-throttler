@@ -11,5 +11,5 @@ const testFrameworkConfiguration = {
 
 module.exports = {
 	name: 'adonis-ioc-tranformer',
-	factory: () => iocTransformer(require('typescript/lib/typescript'), testFrameworkConfiguration)
+	factory: () => iocTransformer(require('typescript/lib/typescript'), testFrameworkConfiguration),
 }

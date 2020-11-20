@@ -3,6 +3,7 @@ module.exports = {
 	testEnvironment: 'node',
 	verbose: false,
 	testPath: '/test',
+	testPathIgnorePatterns: ['build'],
 	globals: {
 		'ts-jest': {
 			astTransformers: {

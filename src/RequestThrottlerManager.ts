@@ -1,6 +1,5 @@
 import { CacheManagerContract } from '@ioc:Adonis/Addons/Adonis5-Cache'
 import { RequestContract } from '@ioc:Adonis/Core/Request'
-import DefaultClientRecognizer from './ClientRecognizers/DefaultClientRecognizer'
 import dayjs from 'dayjs'
 import ms from 'ms'
 
@@ -16,9 +15,7 @@ export default class RequestThrottlerManager implements RequestThrottlerManagerC
 	protected cache: CacheManagerContract
 	protected clientRecognizer: ClientRecognizerContract
 
-	constructor(protected config: ThrottleConfig) {
-		this.clientRecognizer = new DefaultClientRecognizer()
-	}
+	constructor(protected config: ThrottleConfig) {}
 
 	private get cacheStorage(): CacheManagerContract {
 		return this.cache.viaStorage(this.config.cacheStorage)

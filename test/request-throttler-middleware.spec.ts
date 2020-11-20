@@ -23,6 +23,8 @@ const testConfig: ThrottleConfig = {
 		message: 'Maximum number of login attempts exceeded. Please try again later.',
 		status: 429,
 	},
+
+	requestKeysForRecognizing: ['method', 'url', 'ip'],
 }
 const cacheConfig: CacheConfig = {
 	recordTTL: 60000, // record ttl in ms,

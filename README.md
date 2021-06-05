@@ -12,14 +12,11 @@
 
 - [Installation](#installation)
 - [Sample Usage](#sample-usage)
-- [Custom storages](#custom-storages)
-    - [Storage toggle](#storage-toggle)
-- [Custom context](#custom-context)
-    - [Enable custom context as default](#enable-custom-context-as-default)
-    - [Cache fallback](#cache-fallback)
-- [Cache events](#cache-events)
-- [Cache tags](#cache-tags)
-- [Cache record TTL](#cache-record-ttl)
+  - [Throttler middleware](#throttler-middleware)
+  - [Throttler service](#throttler-service)
+- [Configuration](#configuration)
+- [Request recognizer](#request-recognizer)
+- [Cache storage](#cache-storage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

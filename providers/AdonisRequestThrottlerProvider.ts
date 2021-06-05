@@ -6,18 +6,25 @@ import CacheClientBuilder from '../src/CacheClientBuilder'
 import { RedisManagerContract } from '@ioc:Adonis/Addons/Redis'
 import { CacheManagerContract } from '@ioc:Adonis/Addons/Adonis5-Cache'
 import DefaultClientRecognizer from '../src/ClientRecognizers/DefaultClientRecognizer'
+import { Application } from '@adonisjs/application'
 
 export default class AdonisRequestThrottlerProvider {
-	constructor(protected container: IocContract) {}
+	public static needsApplication: boolean = true
 
-	public register(): void {
+	protected container: IocContract
+
+	constructor(app: Application) {
+		this.container = app.container
+	}
+
+	public async register(): Promise<void> {
 		this.container.singleton('Adonis/Addons/RequestThrottler', () => {
 			const config = this.container.use('Adonis/Core/Config')
 			return new RequestThrottlerManager(config.get('request-throttler'))
 		})
 	}
 
-	public boot(): void {
+	public async boot(): Promise<void> {
 		this.setupThrottler()
 		this.registerMiddleware()
 	}

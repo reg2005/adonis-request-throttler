@@ -1,5 +1,5 @@
 import { ThrottleConfig } from '@ioc:Adonis/Addons/RequestThrottler'
-import { AdonisApplication } from '../test-helpers/TestAdonisApp'
+import AdonisApplication from 'adonis-provider-tester'
 import AdonisCacheProvider from 'adonis5-cache/build'
 import AdonisRequestThrottlerProvider from '../providers/AdonisRequestThrottlerProvider'
 import { ServerContract } from '@ioc:Adonis/Core/Server'
@@ -53,7 +53,7 @@ describe.each([
 	let server: ServerContract
 
 	beforeEach(async () => {
-		app = await new AdonisApplication([], [])
+		app = await new AdonisApplication()
 			.registerProvider(AdonisCacheProvider)
 			.registerProvider(AdonisRequestThrottlerProvider)
 			.registerAppConfig({ configName: 'cache', appConfig: cacheConfig })

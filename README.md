@@ -1,10 +1,7 @@
-
 # Adonis-Request-Throttler
 > Request limiter for Adonis JS 5
 
 [![typescript-image]][typescript-url] [![npm-image]][npm-url] [![license-image]][license-url]
-
-
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -23,12 +20,12 @@
 # Installation
 Install [Adonis redis client](https://github.com/adonisjs/redis), if you want to use redis as storage for request info.
 ```bash
-npm i --save adonis5-throttle
+npm i --save adonis-request-throttler
 ```
 
 Install provider:
 ```bash
-node ace invoke adonis-request-throttler
+node ace configure adonis-request-throttler
 ```
 * For other configuration, please update the `config/request-throttler.ts`.
 
@@ -77,7 +74,7 @@ export default class ControllerExample {
 }
 
 ```
-# Configuration 
+# Configuration
 For configuring request throttler use **request-throttler.ts** file in config dir.
 ```ts
 import { ThrottleConfig } from '@ioc:Adonis/Addons/RequestThrottler'
@@ -98,6 +95,8 @@ export default {
 		message: 'Maximum number of login attempts exceeded. Please try again later.',
 		status: 429,
 	},
+
+	requestKeysForRecognizing: ['method', 'hostname', 'url', 'ip'],
 } as ThrottleConfig
 ```
 You can configure such options:
@@ -107,14 +106,16 @@ You can configure such options:
 
 - **ttlUnits** - time units for maxAttemptPeriod property
 
-- **cacheStorage** - specify storage for requests information  
+- **cacheStorage** - specify storage for requests information
 
-- **useOwnCache** - specify is request throttler uses own cache provider or takes already instantiated cache provider from Adonis IoC container.
+- **useOwnCache** - specify is request throttler uses own cache provider or takes already instantiated cache provider from Adonis IoC container
 
-- **limitExceptionParams** - specify params for limit exception, you can change http status or add localization for message.
+- **limitExceptionParams** - specify params for limit exception, you can change http status or add localization for message
+
+- **requestKeysForRecognizing** - specify request keys for recognizing the client and the route
 
 # Request recognizer
-By default for request verifying throttler takes info about method, url, ip of request. If you need to specify request recognizing you should implement **ClientRecognizerContract** interface in your custom recognizer.
+By default for request verifying throttler takes info about method, hostname, url, ip of request. If you need to specify request recognizing you should implement **ClientRecognizerContract** interface in your custom recognizer.
 
 ```ts
 import { RequestContract } from '@ioc:Adonis/Core/Request'
@@ -148,9 +149,9 @@ You should register cache provider before request-throttler provider for using a
     "adonis5-cache",
     "adonis-request-throttler"
   ]
-} 
+}
 ```
-When you use [adonis5-cache](https://github.com/reg2005/adonis5-cache#readme) as storage, you can add custom storages for storing request data. Read more about this in adonis5-cache [docs].(https://github.com/reg2005/adonis5-cache#readme)
+When you use [adonis5-cache](https://github.com/reg2005/adonis5-cache#readme) as storage, you can add custom storages for storing request data. Read more about this in adonis5-cache [docs](https://github.com/reg2005/adonis5-cache#readme).
 
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
 [typescript-url]:  "typescript"

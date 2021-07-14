@@ -1,7 +1,6 @@
 declare module '@ioc:Adonis/Addons/RequestThrottler' {
 	import { CacheManagerContract, TtlUnits, CacheStorage } from '@ioc:Adonis/Addons/Adonis5-Cache'
 	import { RequestContract } from '@ioc:Adonis/Core/Request'
-	import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 	export type VisitorData = {
 		attemptCount: number
@@ -66,7 +65,7 @@ declare module '@ioc:Adonis/Addons/RequestThrottler' {
 		requestKeysForRecognizing: RequestKeysForRecognizing[]
 	}
 
-	const RequestThrottlerManager: RequestThrottlerManagerContract[]
+	const RequestThrottlerManager: RequestThrottlerManagerContract
 
 	export default RequestThrottlerManager
 }

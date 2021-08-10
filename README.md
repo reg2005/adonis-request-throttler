@@ -82,9 +82,9 @@ import { ThrottleConfig } from '@ioc:Adonis/Addons/RequestThrottler'
 export default {
 	maxAttempts: 10,
 
-	maxAttemptPeriod: 10,
+	maxAttemptPeriod: 600000,
 
-	ttlUnits: 'm',
+	ttlUnits: 'ms',
 
 	cacheStorage: 'redis',
 
@@ -136,9 +136,11 @@ RequestThrottler.useClientRecognizer(new CustomClientRecognizer())
 Then your requests will recognize using your custom recognizer.
 
 # Cache storage
-This packages based on [adonis cache package](https://github.com/reg2005/adonis5-cache#readme). Throttler can work in two modes. By default throttler creates own cache client and uses it for storing info about requests. If you use Adonis cache you can use already instantiated provider for throttler. For using adonis cache set false to **useOwnCache** parameter in your throttler config, and register.
+This packages based on [adonis cache package](https://github.com/reg2005/adonis5-cache#readme). Throttler can work in two modes. By default throttler creates own cache client and uses it for storing info about requests. If you use Adonis cache you can use already instantiated provider for throttler. For using adonis cache set false to **useOwnCache** parameter in your throttler config.
 
-You should register cache provider before request-throttler provider for using adonis-cache with throttler:
+**You need the same `ttlUnits` in your `cache` and `request-throttler` config.**
+
+You should register cache provider before request-throttler:
 ```json
 {
 "providers": [

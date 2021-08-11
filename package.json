@@ -1,6 +1,6 @@
 {
 	"name": "adonis-request-throttler",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"description": "Request throttler provider for AdonisJS 5",
 	"scripts": {
 		"mrm": "mrm --preset=@adonisjs/mrm-preset",

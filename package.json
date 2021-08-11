@@ -48,7 +48,6 @@
 	"types": "build/adonis-typings/index.d.ts",
 	"typings": "build/adonis-typings/index.d.ts",
 	"devDependencies": {
-		"@adonisjs/core": "^5.1.8",
 		"@adonisjs/ioc-transformer": "^2.2.1",
 		"@adonisjs/mrm-preset": "^2.4.0",
 		"@types/jest": "^26.0.23",

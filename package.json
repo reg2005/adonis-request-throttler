@@ -48,43 +48,51 @@
 	"types": "build/adonis-typings/index.d.ts",
 	"typings": "build/adonis-typings/index.d.ts",
 	"devDependencies": {
-		"@adonisjs/ioc-transformer": "^2.2.1",
-		"@adonisjs/mrm-preset": "^2.4.0",
-		"@types/jest": "^26.0.23",
-		"@types/node": "^14.17.1",
-		"@types/ramda": "^0.27.19",
-		"adonis-provider-tester": "git://github.com/VladyslavParashchenko/adonis-provider-tester.git#main",
+		"@adonisjs/core": "^5.1.11",
+		"@adonisjs/ioc-transformer": "^2.3.1",
+		"@adonisjs/mrm-preset": "^4.1.2",
+		"@types/jest": "^27.0.1",
+		"@types/node": "^14.17.11",
+		"@types/ramda": "^0.27.44",
+		"adonis-provider-tester": "^1.1.3",
 		"commitizen": "^4.1.2",
 		"cpx": "^1.5.0",
 		"cz-conventional-changelog": "^3.2.0",
 		"debug": "^4.1.1",
 		"del-cli": "^3.0.1",
 		"doctoc": "^1.4.0",
-		"eslint": "^7.27.0",
+		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-adonis": "^1.3.1",
-		"eslint-plugin-prettier": "^3.4.0",
+		"eslint-plugin-adonis": "^1.3.3",
+		"eslint-plugin-prettier": "^3.4.1",
 		"get-port": "^5.1.1",
 		"github-label-sync": "^2.0.0",
 		"husky": "^4.2.5",
-		"jest": "^27.0.1",
-		"mrm": "^2.6.2",
+		"jest": "^27.0.6",
+		"mrm": "^3.0.8",
 		"np": "^6.3.2",
 		"npm-audit-html": "^1.4.1",
-		"pino-pretty": "^4.1.0",
-		"prettier": "^2.0.5",
+		"prettier": "^2.3.2",
 		"reflect-metadata": "^0.1.13",
 		"source-map-support": "^0.5.19",
-		"supertest": "^5.0.0",
-		"ts-jest": "^27.0.1",
+		"supertest": "^6.1.6",
+		"ts-jest": "^27.0.5",
 		"ts-mockito": "^2.6.1",
-		"ts-node": "^10.0.0",
-		"typescript": "^4.3.2"
+		"ts-node": "^10.2.1",
+		"typescript": "^4.3.5",
+		"pino-pretty": "^4.7.1"
+	},
+	"dependencies": {
+		"@adonisjs/events": "~7.1.2",
+		"@adonisjs/redis": "~7.0.8",
+		"adonis5-cache": "*",
+		"dayjs": "^1.10.6",
+		"ms": "^2.1.3"
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "npm audit --production --json | ./node_modules/.bin/npm-audit-html && git add npm-audit.html && doctoc README.md --title='## Table of contents' && git add README.md",
-			"commit-msg": "node ./node_modules/@adonisjs/mrm-preset/validateCommit/conventional/validate.js"
+			"pre-commit": "doctoc README.md --title='## Table of contents' && git add README.md",
+			"commit-msg": "node ./node_modules/@adonisjs/mrm-preset/validate-commit/conventional/validate.js"
 		}
 	},
 	"nyc": {
@@ -126,12 +134,5 @@
 	"np": {
 		"contents": ".",
 		"anyBranch": false
-	},
-	"dependencies": {
-		"@adonisjs/events": "^7.0.1",
-		"@adonisjs/redis": "^7.0.4",
-		"adonis5-cache": "^1.3.1",
-		"dayjs": "^1.10.5",
-		"ms": "^2.1.3"
 	}
 }

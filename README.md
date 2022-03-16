@@ -31,7 +31,7 @@ node ace configure adonis-request-throttler
 
 # Sample Usage
 ## Throttler middleware
-After adding cache provider to your app, you can import CacheManager for accessing to cache.
+After adding request throttler to your app, you must register the middleware.
 ```ts
 // start/kernel.ts
 Server.middleware.registerNamed({

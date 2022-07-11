@@ -6,7 +6,7 @@ import { ServerContract } from '@ioc:Adonis/Core/Server'
 import Route from '@ioc:Adonis/Core/Route'
 import supertest from 'supertest'
 import { CacheConfig } from '@ioc:Adonis/Addons/Adonis5-Cache'
-import dayjs from 'dayjs'
+import { DateTime } from 'luxon'
 
 const testConfig: ThrottleConfig = {
 	maxAttempts: 10,
@@ -92,9 +92,11 @@ describe.each([
 				'x-ratelimit-limit': String(testConfig.maxAttempts),
 				'x-ratelimit-remaining': String(testConfig.maxAttempts - 1),
 			})
-			expect(Number(response.headers['x-ratelimit-reset'])).toBeGreaterThanOrEqual(dayjs().unix())
+			expect(Number(response.headers['x-ratelimit-reset'])).toBeGreaterThanOrEqual(
+				DateTime.now().toMillis()
+			)
 			expect(Number(response.headers['x-ratelimit-reset'])).toBeLessThanOrEqual(
-				dayjs().add(testConfig.maxAttemptPeriod, 'm').unix()
+				DateTime.now().plus({ minutes: testConfig.maxAttemptPeriod }).toMillis()
 			)
 		})
 	})
@@ -115,9 +117,11 @@ describe.each([
 				'x-ratelimit-remaining': String(0),
 			})
 
-			expect(Number(response.headers['x-ratelimit-reset'])).toBeGreaterThanOrEqual(dayjs().unix())
+			expect(Number(response.headers['x-ratelimit-reset'])).toBeGreaterThanOrEqual(
+				DateTime.now().toMillis()
+			)
 			expect(Number(response.headers['x-ratelimit-reset'])).toBeLessThanOrEqual(
-				dayjs().add(testConfig.maxAttemptPeriod, 'm').unix()
+				DateTime.now().plus({ minutes: testConfig.maxAttemptPeriod }).toMillis()
 			)
 		})
 	})

@@ -1,6 +1,6 @@
 import { CacheManagerContract } from '@ioc:Adonis/Addons/Adonis5-Cache'
 import { RequestContract } from '@ioc:Adonis/Core/Request'
-import dayjs from 'dayjs'
+import { DateTime } from 'luxon'
 import ms from 'ms'
 
 import {
@@ -74,9 +74,9 @@ export default class RequestThrottlerManager implements RequestThrottlerManagerC
 		return {
 			maxAttemptCount: permittedAttemptCount || this.config.maxAttempts,
 			attemptCount: attemptCount + 1,
-			resetTime: dayjs()
-				.add(ms(`${permittedAttemptPeriod}${this.config.ttlUnits}`), 'ms')
-				.unix(),
+			resetTime: DateTime.now()
+				.plus(ms(`${permittedAttemptPeriod}${this.config.ttlUnits}`))
+				.toMillis(),
 			requestPermitted: verificationResult,
 		}
 	}

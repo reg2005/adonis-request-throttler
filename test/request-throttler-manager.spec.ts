@@ -8,7 +8,7 @@ import {
 import { RequestContract } from '@ioc:Adonis/Core/Request'
 import Request from '@adonisjs/http-server/build/src/Request'
 import { deepEqual, instance, mock, verify, when } from 'ts-mockito'
-import dayjs from 'dayjs'
+import { DateTime } from 'luxon'
 import DefaultClientRecognizer from '../src/ClientRecognizers/DefaultClientRecognizer'
 
 const testConfig: ThrottleConfig = {
@@ -81,8 +81,10 @@ describe('Request Throttler Manager', () => {
 				attemptCount: 1,
 				maxAttemptCount: testConfig.maxAttempts,
 			})
-			expect(resetTime).toBeGreaterThanOrEqual(dayjs().unix())
-			expect(resetTime).toBeLessThanOrEqual(dayjs().add(testConfig.maxAttemptPeriod, 'm').unix())
+			expect(resetTime).toBeGreaterThanOrEqual(DateTime.now().toMillis())
+			expect(resetTime).toBeLessThanOrEqual(
+				DateTime.now().plus({ minutes: testConfig.maxAttemptPeriod }).toMillis()
+			)
 
 			verify(
 				mockedCache.put(
@@ -118,8 +120,10 @@ describe('Request Throttler Manager', () => {
 				attemptCount: testConfig.maxAttempts + 1,
 				maxAttemptCount: testConfig.maxAttempts,
 			})
-			expect(resetTime).toBeGreaterThanOrEqual(dayjs().unix())
-			expect(resetTime).toBeLessThanOrEqual(dayjs().add(testConfig.maxAttemptPeriod, 'm').unix())
+			expect(resetTime).toBeGreaterThanOrEqual(DateTime.now().toMillis())
+			expect(resetTime).toBeLessThanOrEqual(
+				DateTime.now().plus({ minutes: testConfig.maxAttemptPeriod }).toMillis()
+			)
 
 			verify(
 				mockedCache.put(
@@ -165,8 +169,10 @@ describe('Request Throttler Manager', () => {
 					attemptCount: 1,
 					maxAttemptCount: testConfig.maxAttempts,
 				})
-				expect(resetTime).toBeGreaterThanOrEqual(dayjs().unix())
-				expect(resetTime).toBeLessThanOrEqual(dayjs().add(testConfig.maxAttemptPeriod, 'm').unix())
+				expect(resetTime).toBeGreaterThanOrEqual(DateTime.now().toMillis())
+				expect(resetTime).toBeLessThanOrEqual(
+					DateTime.now().plus({ minutes: testConfig.maxAttemptPeriod }).toMillis()
+				)
 
 				verify(
 					mockedCache.put(
@@ -203,8 +209,10 @@ describe('Request Throttler Manager', () => {
 				attemptCount: testConfig.maxAttempts + 1,
 				maxAttemptCount: testConfig.maxAttempts * 2,
 			})
-			expect(resetTime).toBeGreaterThanOrEqual(dayjs().unix())
-			expect(resetTime).toBeLessThanOrEqual(dayjs().add(testConfig.maxAttemptPeriod, 'm').unix())
+			expect(resetTime).toBeGreaterThanOrEqual(DateTime.now().toMillis())
+			expect(resetTime).toBeLessThanOrEqual(
+				DateTime.now().plus({ minutes: testConfig.maxAttemptPeriod }).toMillis()
+			)
 
 			verify(
 				mockedCache.put(
@@ -244,11 +252,11 @@ describe('Request Throttler Manager', () => {
 				attemptCount: testConfig.maxAttempts + 1,
 				maxAttemptCount: testConfig.maxAttempts * 2,
 			})
-			expect(resetTime).toBeGreaterThanOrEqual(dayjs().unix())
+			expect(resetTime).toBeGreaterThanOrEqual(DateTime.now().toMillis())
 			expect(resetTime).toBeLessThanOrEqual(
-				dayjs()
-					.add(testConfig.maxAttemptPeriod * 2, 'm')
-					.unix()
+				DateTime.now()
+					.plus({ minutes: testConfig.maxAttemptPeriod * 2 })
+					.toMillis()
 			)
 
 			verify(
@@ -286,8 +294,10 @@ describe('Request Throttler Manager', () => {
 				attemptCount: 1,
 				maxAttemptCount: testConfig.maxAttempts,
 			})
-			expect(resetTime).toBeGreaterThanOrEqual(dayjs().unix())
-			expect(resetTime).toBeLessThanOrEqual(dayjs().add(testConfig.maxAttemptPeriod, 'm').unix())
+			expect(resetTime).toBeGreaterThanOrEqual(DateTime.now().toMillis())
+			expect(resetTime).toBeLessThanOrEqual(
+				DateTime.now().plus({ minutes: testConfig.maxAttemptPeriod }).toMillis()
+			)
 
 			verify(
 				mockedCache.put(
@@ -323,8 +333,10 @@ describe('Request Throttler Manager', () => {
 				attemptCount: testConfig.maxAttempts + 1,
 				maxAttemptCount: testConfig.maxAttempts,
 			})
-			expect(resetTime).toBeGreaterThanOrEqual(dayjs().unix())
-			expect(resetTime).toBeLessThanOrEqual(dayjs().add(testConfig.maxAttemptPeriod, 'm').unix())
+			expect(resetTime).toBeGreaterThanOrEqual(DateTime.now().toMillis())
+			expect(resetTime).toBeLessThanOrEqual(
+				DateTime.now().plus({ minutes: testConfig.maxAttemptPeriod }).toMillis()
+			)
 
 			verify(
 				mockedCache.put(
@@ -360,8 +372,10 @@ describe('Request Throttler Manager', () => {
 				attemptCount: testConfig.maxAttempts + 1,
 				maxAttemptCount: testConfig.maxAttempts * 2,
 			})
-			expect(resetTime).toBeGreaterThanOrEqual(dayjs().unix())
-			expect(resetTime).toBeLessThanOrEqual(dayjs().add(testConfig.maxAttemptPeriod, 'm').unix())
+			expect(resetTime).toBeGreaterThanOrEqual(DateTime.now().toMillis())
+			expect(resetTime).toBeLessThanOrEqual(
+				DateTime.now().plus({ minutes: testConfig.maxAttemptPeriod }).toMillis()
+			)
 
 			verify(
 				mockedCache.put(
@@ -402,11 +416,11 @@ describe('Request Throttler Manager', () => {
 				maxAttemptCount: testConfig.maxAttempts,
 			})
 
-			expect(resetTime).toBeGreaterThanOrEqual(dayjs().unix())
+			expect(resetTime).toBeGreaterThanOrEqual(DateTime.now().toMillis())
 			expect(resetTime).toBeLessThanOrEqual(
-				dayjs()
-					.add(testConfig.maxAttemptPeriod * 2, 'm')
-					.unix()
+				DateTime.now()
+					.plus({ minutes: testConfig.maxAttemptPeriod * 2 })
+					.toMillis()
 			)
 
 			verify(

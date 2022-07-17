@@ -1,5 +1,5 @@
 import { ThrottleConfig } from '@ioc:Adonis/Addons/RequestThrottler'
-import AdonisApplication from 'adonis-provider-tester'
+import AdonisApplication from 'adonis-provider-tester/build'
 import AdonisCacheProvider from 'adonis5-cache/build'
 import AdonisRequestThrottlerProvider from '../providers/AdonisRequestThrottlerProvider'
 import { ServerContract } from '@ioc:Adonis/Core/Server'

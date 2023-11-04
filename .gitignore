@@ -13,5 +13,3 @@ shrinkwrap.yaml
 test/__app
 
 .env
-
-package-lock.json

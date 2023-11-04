@@ -6,7 +6,10 @@ import RedisStorage from 'adonis5-cache/build/src/CacheStorages/RedisStorage'
 import { RedisManagerContract } from '@ioc:Adonis/Addons/Redis'
 
 export default class CacheClientBuilder {
-	constructor(protected config: ThrottleConfig, protected redis: RedisManagerContract | null) {}
+	constructor(
+		protected config: ThrottleConfig,
+		protected redis: RedisManagerContract | null
+	) {}
 
 	public buildCacheClient(): CacheManagerContract {
 		const manager = new CacheManager({
